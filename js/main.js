@@ -1,4 +1,7 @@
 "use strict";
+
+//masterブランチ
+
 {
   //DOMの取得
   const targetName = document.querySelector(".targetName");
