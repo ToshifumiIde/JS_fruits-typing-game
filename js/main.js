@@ -1,16 +1,23 @@
 "use strict";
 
-//masterブランチ
+//feature0にてtimerの作成
+
 
 {
+
+  //タイピングゲーム部分の実装
   //DOMの取得
-  const targetName = document.querySelector(".targetName");
+  // const targetName = document.querySelector(".targetName");
   const target = document.getElementById("target");
   const targetIcon = document.getElementById("targetIcon");
   const scoreLabel = document.getElementById("score");
   const missLabel = document.getElementById("miss");
   const counterLabel = document.getElementById("counter");
   const clearCounter = document.getElementById("clearCounter");
+
+  const time = document.getElementById("time");
+
+
 
   //タイピングゲームのタイプする文字列を格納
   const Words = [
@@ -42,8 +49,10 @@
   let isPlaying = false;
   let counter = 0;
   let gameLevel = 30;//何問のタイピングを終了したらクリアするか設定
+  let startTime;
+  let timeoutId;
 
-
+  //Counterのゲームレベルを表示
   clearCounter.textContent = gameLevel;
 
   //タイピングのターゲットを更新する関数
@@ -53,9 +62,22 @@
       placeholder += "_";
     }
     target.textContent = placeholder + word.substring(loc);
-  }
+  };
 
-  //スタートの画面のイベント
+  //時間経過を描写する関数を作成
+  function countUp(){
+    const day = new Date(Date.now() - startTime);
+    const m = String(day.getMinutes()).padStart(2,"0");
+    const s = String(day.getSeconds()).padStart(2,"0");
+    const ms = String(day.getMilliseconds()).padStart(3,"0");
+    time.textContent = `${m}:${s}.${ms}`;
+    timeoutId = setTimeout(()=> {
+      countUp()
+    },10);
+  };
+
+
+  //スタートの画面のクリックイベント
   window.addEventListener("click", () => {
     if (isPlaying === false) {
       isPlaying = true;
@@ -63,6 +85,8 @@
       targetIcon.textContent = icon;
       target.classList.remove("caution");
       targetIcon.classList.add("clicked");
+      startTime = Date.now();
+      countUp();
     } else {
       return;
     }
@@ -93,4 +117,5 @@
         }
       }
   });
+
 }
