@@ -1,0 +1,58 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 124rem;
+  margin: 0 auto;
+}
+
+////////////////////
+//レスポンシブ対応//
+////////////////////
+@mixin sp {
+  @media (max-width: 710px) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media (min-width: 711px) and (max-width: 989px) {
+    @content;
+  }
+}
+@mixin pc {
+  @media (min-width: 990px) {
+    @content;
+  }
+}
+
+.brSp {
+  @include tab {
+    display: none;
+  }
+  @include pc {
+    display: none;
+  }
+}
+.brTab {
+  @include sp {
+    display: none;
+  }
+  @include pc {
+    display: none;
+  }
+}
+.brPc {
+  @include sp {
+    display: none;
+  }
+  @include tab {
+    display: none;
+  }
+}

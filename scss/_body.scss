@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+html {
+  font-size: 62.5%;
+  margin: 0;
+}
+
+body {
+  box-sizing: border-box;
+  background-image: url(../img/fruits.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: ’Courier New’, mono-space;
+  color: #333;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.backgroundShadow {
+  padding-top: 15rem;
+  background: rgba(30, 30, 30, 0.4);
+  height: 100vh;
+  width: 100%;
+}
+
+.targetBox {
+  background: rgba(255, 255, 255, 0.9);
+  height: 45rem;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  width:90%;
+}
+
+#target {
+  font-size: 6rem;
+  letter-spacing: 0.3rem;
+  margin: 4rem auto 5rem;
+  height: 8rem;
+}
+#target.caution {
+  font-size: 1.8rem;
+  line-height: 8rem;
+}
+
+#targetIcon {
+  animation-duration: 1s;
+  animation-name: flashing;
+  animation-iteration-count: infinite;
+  display: inline-block;
+  font-size: 5rem;
+  height: 6rem;
+  line-height: 6rem;
+  margin: 0 auto 4rem;
+}
+
+#targetIcon:hover {
+  cursor: pointer;
+}
+
+@keyframes flashing {
+  0% {
+    color: rgba(255, 0, 0, 1);
+  }
+  50% {
+    color: rgba(255, 50, 50, 0.5);
+  }
+  100% {
+    color: rgba(255, 0, 0, 1);
+  }
+}
+
+#targetIcon.clicked {
+  line-height: 6rem;
+  color: #999;
+  font-size: 2.5rem;
+  animation-name: none;
+}
+
+.targetName {
+  visibility: hidden;
+}
+
+.info {
+  font-size: 3rem;
+}
+.timer {
+  font-size: 3rem;
+  padding-right: 3rem;
+  position: absolute;
+  top:90%;
+  transform:translate(0, -50%);
+  right:5%;
+  text-align: right;
+}

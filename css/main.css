@@ -1,0 +1,324 @@
+@charset "UTF-8";
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 124rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 711px) and (max-width: 989px) {
+  .brSp {
+    display: none;
+  }
+}
+@media (min-width: 990px) {
+  .brSp {
+    display: none;
+  }
+}
+
+@media (max-width: 710px) {
+  .brTab {
+    display: none;
+  }
+}
+@media (min-width: 990px) {
+  .brTab {
+    display: none;
+  }
+}
+
+@media (max-width: 710px) {
+  .brPc {
+    display: none;
+  }
+}
+@media (min-width: 711px) and (max-width: 989px) {
+  .brPc {
+    display: none;
+  }
+}
+
+html {
+  font-size: 62.5%;
+  margin: 0;
+}
+
+body {
+  box-sizing: border-box;
+  background-image: url(../img/fruits.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: ’Courier New’, mono-space;
+  color: #333;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.backgroundShadow {
+  padding-top: 15rem;
+  background: rgba(30, 30, 30, 0.4);
+  height: 100vh;
+  width: 100%;
+}
+
+.targetBox {
+  background: rgba(255, 255, 255, 0.9);
+  height: 45rem;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  width: 90%;
+}
+
+#target {
+  font-size: 6rem;
+  letter-spacing: 0.3rem;
+  margin: 4rem auto 5rem;
+  height: 8rem;
+}
+
+#target.caution {
+  font-size: 1.8rem;
+  line-height: 8rem;
+}
+
+#targetIcon {
+  animation-duration: 1s;
+  animation-name: flashing;
+  animation-iteration-count: infinite;
+  display: inline-block;
+  font-size: 5rem;
+  height: 6rem;
+  line-height: 6rem;
+  margin: 0 auto 4rem;
+}
+
+#targetIcon:hover {
+  cursor: pointer;
+}
+
+@keyframes flashing {
+  0% {
+    color: red;
+  }
+  50% {
+    color: rgba(255, 50, 50, 0.5);
+  }
+  100% {
+    color: red;
+  }
+}
+#targetIcon.clicked {
+  line-height: 6rem;
+  color: #999;
+  font-size: 2.5rem;
+  animation-name: none;
+}
+
+.targetName {
+  visibility: hidden;
+}
+
+.info {
+  font-size: 3rem;
+}
+
+.timer {
+  font-size: 3rem;
+  padding-right: 3rem;
+  position: absolute;
+  top: 90%;
+  transform: translate(0, -50%);
+  right: 5%;
+  text-align: right;
+}
+
+/*# sourceMappingURL=Main.css.map */
