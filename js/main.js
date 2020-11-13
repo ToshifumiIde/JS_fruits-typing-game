@@ -17,8 +17,6 @@
 
   const time = document.getElementById("time");
 
-
-
   //タイピングゲームのタイプする文字列を格納
   const Words = [
     { icon: "🥑アボカド🥑", name: "avocado" },
@@ -48,7 +46,7 @@
   let miss = 0;
   let isPlaying = false;
   let counter = 0;
-  let gameLevel = 30;//何問のタイピングを終了したらクリアするか設定
+  let gameLevel = 1;//何問のタイピングを終了したらクリアするか設定
   let startTime;
   let timeoutId;
 
@@ -79,41 +77,51 @@
 
   //スタートの画面のクリックイベント
   window.addEventListener("click", () => {
-    if (isPlaying === false) {
-      isPlaying = true;
-      target.textContent = word;
-      targetIcon.textContent = icon;
-      target.classList.remove("caution");
-      targetIcon.classList.add("clicked");
-      startTime = Date.now();
-      countUp();
-    } else {
+    if (isPlaying === true) {
       return;
     }
+    isPlaying = true;
+    target.textContent = word;
+    targetIcon.textContent = icon;
+    target.classList.remove("caution");
+    targetIcon.classList.add("clicked");
+    startTime = Date.now();
+    countUp();
   });
 
   //タイピングゲームのタイプを実装
   window.addEventListener("keydown", (e) => {
       if (isPlaying === false) {
-        return;
+        return;//ゲームが開始されていなかったら処理を実行しない
       } else {
-        if (e.key === word[loc]) {
+        if(e.key !== word[loc]){
+          miss++;
+          missLabel.textContent = miss;
+        } else {
           loc++;
           score++;
+          // updateTarget();
+          // scoreLabel.textContent = score;
           if (loc === word.length) {
             loc = 0;
             counter++;
             counterLabel.textContent = counter;
+            if(counter === gameLevel) {
+              scoreLabel.textContent = score;
+              clearTimeout(timeoutId);
+              target.textContent = "✨🎉Congratulations🎉✨";
+              targetIcon.textContent = "✨🎉おめでとう🎉✨";
+              if(window.confirm(`あなたの正解率は (${score}/${score + miss}) でした。もう一度ゲームをしますか？`)){
+              };
+              return;
+            }
             randomNumbers = Math.floor(Math.random() * Words.length);
+            word = Words[randomNumbers].name;
             icon = Words[randomNumbers].icon;
             targetIcon.textContent = icon;
-            word = Words[randomNumbers].name;
           }
           updateTarget();
           scoreLabel.textContent = score;
-        } else {
-          miss++;
-          missLabel.textContent = miss;
         }
       }
   });
