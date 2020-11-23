@@ -2,7 +2,6 @@
 
 //feature1を作成
 
-
 {
   //タイピングゲーム部分の実装
   //DOMの取得
@@ -45,14 +44,18 @@
   let miss = 0;
   let isPlaying = false;
   let counter = 0;
-  let gameLevel = 1;//何問のタイピングを終了したらクリアするか設定
+  let gameLevel = 3;//何問のタイピングを終了したらクリアするか設定
   let startTime;
   let timeoutId;
 
-  //Counterのゲームレベルを表示
+  ///////////////////////////////
+  //Counterのゲームレベルを表示//
+  ///////////////////////////////
   clearCounter.textContent = gameLevel;
 
-  //タイピングのターゲットを更新する関数
+  ////////////////////////////////////////
+  //タイピングのターゲットを更新する関数//
+  ////////////////////////////////////////
   function updateTarget() {
     let placeholder = "";
     for (let i = 0; i < loc; i++) {
@@ -75,12 +78,27 @@
     },10);
   };
 
+  //////////////////////////////
+  //ゲーム再開時の数字リセット//
+  //////////////////////////////
+  function reset(){
+    loc = 0;
+    score = 0;
+    miss = 0;
+    counter = 0;
+    scoreLabel.textContent = score;
+    missLabel.textContent = miss;
+    counterLabel.textContent = counter;
+  }
 
-  //スタートの画面のクリックイベント
+  ////////////////////////////////////
+  //スタートの画面のクリックイベント//
+  ////////////////////////////////////
   window.addEventListener("click", () => {
     if (isPlaying === true) {
       return;
     }
+    reset();
     isPlaying = true;
     target.textContent = word;
     targetIcon.textContent = icon;
@@ -90,7 +108,9 @@
     countUp();
   });
 
-  //タイピングゲームのタイプを実装
+  //////////////////////////////////
+  //タイピングゲームのタイプを実装//
+  //////////////////////////////////
   window.addEventListener("keydown", (e) => {
       if (isPlaying === false) {
         return;//ゲームが開始されていなかったら処理を実行しない
@@ -101,8 +121,8 @@
         } else {
           loc++;
           score++;
-          // updateTarget();
-          // scoreLabel.textContent = score;
+          updateTarget();
+          scoreLabel.textContent = score;
           if (loc === word.length) {
             loc = 0;
             counter++;
@@ -112,8 +132,9 @@
               clearTimeout(timeoutId);
               target.textContent = "✨Congratulations✨";
               targetIcon.textContent = "✨🎉おめでとう🎉✨";
-              if(window.confirm(`あなたの正解率は ${score / (score + miss)*100}%(${score}/${score + miss}問正解) でした。もう一度ゲームをしますか？`)){
-              };
+              // const percent = score / (score+miss) *100;
+              // window.alert(`あなたの正解率は ${percent.toPrecision(3)}%(${score}/${score + miss}問正解) でした！`);
+              isPlaying = false;
               return;
             }
             randomNumbers = Math.floor(Math.random() * Words.length);
