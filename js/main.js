@@ -3,7 +3,6 @@
 //feature0にてtimerの作成
 
 {
-
   //タイピングゲーム部分の実装
   //DOMの取得
   // const targetName = document.querySelector(".targetName");
@@ -61,7 +60,9 @@
     target.textContent = placeholder + word.substring(loc);
   };
 
-  //時間経過を描写する関数を作成
+  ////////////////////////////////
+  //時間経過を描写する関数を作成//
+  ////////////////////////////////
   function countUp(){
     const day = new Date(Date.now() - startTime);
     const m = String(day.getMinutes()).padStart(2,"0");
@@ -108,9 +109,9 @@
             if(counter === gameLevel) {
               scoreLabel.textContent = score;
               clearTimeout(timeoutId);
-              target.textContent = "✨🎉Congratulations🎉✨";
+              target.textContent = "✨Congratulations✨";
               targetIcon.textContent = "✨🎉おめでとう🎉✨";
-              if(window.confirm(`あなたの正解率は (${score}/${score + miss}) でした。もう一度ゲームをしますか？`)){
+              if(window.confirm(`あなたの正解率は ${score / (score + miss)*100}%(${score}/${score + miss}問正解) でした。もう一度ゲームをしますか？`)){
               };
               return;
             }
