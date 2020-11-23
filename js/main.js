@@ -1,6 +1,7 @@
 "use strict";
 
-//feature0にてtimerの作成
+//feature1を作成
+
 
 {
   //タイピングゲーム部分の実装
