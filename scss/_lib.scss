@@ -16,13 +16,13 @@ body {
 //レスポンシブ対応//
 ////////////////////
 @mixin sp {
-  @media (max-width: 710px) {
+  @media (max-width: 700px) {
     @content;
   }
 }
 
 @mixin tab {
-  @media (min-width: 711px) and (max-width: 989px) {
+  @media (min-width: 701px) and (max-width: 989px) {
     @content;
   }
 }

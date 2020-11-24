@@ -1,12 +1,12 @@
 "use strict";
 
-//feature0にてtimerの作成
+//feature1を作成
 
 
 {
-
-  //タイピングゲーム部分の実装
-  //DOMの取得
+  /////////////
+  //DOMの取得//
+  /////////////
   // const targetName = document.querySelector(".targetName");
   const target = document.getElementById("target");
   const targetIcon = document.getElementById("targetIcon");
@@ -14,10 +14,11 @@
   const missLabel = document.getElementById("miss");
   const counterLabel = document.getElementById("counter");
   const clearCounter = document.getElementById("clearCounter");
-
   const time = document.getElementById("time");
 
-  //タイピングゲームのタイプする文字列を格納
+  ////////////////////////////////////////////
+  //タイピングゲームのタイプする文字列を格納//
+  ////////////////////////////////////////////
   const Words = [
     { icon: "🥑アボカド🥑", name: "avocado" },
     { icon: "🍓いちご🍓", name: "strawberry" },
@@ -46,23 +47,18 @@
   let miss = 0;
   let isPlaying = false;
   let counter = 0;
-  let gameLevel = 1;//何問のタイピングを終了したらクリアするか設定
+  let gameLevel = 3;//何問のタイピングを終了したらクリアするか設定
   let startTime;
   let timeoutId;
 
-  //Counterのゲームレベルを表示
+  ///////////////////////////////
+  //Counterのゲームレベルを表示//
+  ///////////////////////////////
   clearCounter.textContent = gameLevel;
 
-  //タイピングのターゲットを更新する関数
-  function updateTarget() {
-    let placeholder = "";
-    for (let i = 0; i < loc; i++) {
-      placeholder += "_";
-    }
-    target.textContent = placeholder + word.substring(loc);
-  };
-
-  //時間経過を描写する関数を作成
+  //////////////////////////
+  //時間経過を描写する関数//
+  //////////////////////////
   function countUp(){
     const day = new Date(Date.now() - startTime);
     const m = String(day.getMinutes()).padStart(2,"0");
@@ -74,22 +70,65 @@
     },10);
   };
 
+  //////////////////////////////
+  //ゲーム再開時の数字リセット//
+  //////////////////////////////
+  function resetGame(){
+    loc = 0;
+    score = 0;
+    miss = 0;
+    counter = 0;
+    scoreLabel.textContent = score;
+    missLabel.textContent = miss;
+    counterLabel.textContent = counter;
+  }
 
-  //スタートの画面のクリックイベント
+  //////////////////////////////////
+  //スタート画面のクリックイベント//
+  //////////////////////////////////
   window.addEventListener("click", () => {
     if (isPlaying === true) {
       return;
     }
+    resetGame();
     isPlaying = true;
     target.textContent = word;
     targetIcon.textContent = icon;
     target.classList.remove("caution");
-    targetIcon.classList.add("clicked");
+    target.classList.add("active");
+    targetIcon.classList.add("active");
     startTime = Date.now();
     countUp();
   });
 
-  //タイピングゲームのタイプを実装
+  //////////////////////
+  //ゲーム終了時の関数//
+  //////////////////////
+  function gameClear(){
+      scoreLabel.textContent = score;
+      clearTimeout(timeoutId);
+      target.textContent = "✨Congratulations✨";
+      targetIcon.textContent = "✨🎉おめでとう🎉✨";
+      // typeSpeed.textContent = `${score / }`;
+      // const percent = score / (score+miss) *100;
+      // window.alert(`あなたの正解率は ${percent.toPrecision(3)}%(${score}/${score + miss}問正解) でした！`);
+      isPlaying = false;
+  }
+
+  ////////////////////////////////////////
+  //タイピングのターゲットを更新する関数//
+  ////////////////////////////////////////
+  function updateTypeTarget() {
+    let placeholder = "";
+    for (let i = 0; i < loc; i++) {
+      placeholder += "_";
+    }
+    target.textContent = placeholder + word.substring(loc);
+  };
+
+  //////////////////////////////////
+  //タイピングゲームのタイプを実装//
+  //////////////////////////////////
   window.addEventListener("keydown", (e) => {
       if (isPlaying === false) {
         return;//ゲームが開始されていなかったら処理を実行しない
@@ -100,28 +139,25 @@
         } else {
           loc++;
           score++;
-          // updateTarget();
-          // scoreLabel.textContent = score;
+          scoreLabel.textContent = score;
           if (loc === word.length) {
             loc = 0;
             counter++;
             counterLabel.textContent = counter;
             if(counter === gameLevel) {
-              scoreLabel.textContent = score;
-              clearTimeout(timeoutId);
-              target.textContent = "✨🎉Congratulations🎉✨";
-              targetIcon.textContent = "✨🎉おめでとう🎉✨";
-              if(window.confirm(`あなたの正解率は (${score}/${score + miss}) でした。もう一度ゲームをしますか？`)){
-              };
+              //gameClear()関数を実行し、以下の処理は実行しない
+              gameClear();
               return;
             }
+            ////////////////////////////////////////////////////////
+            //ゲームが終了してない場合、タイプする文字列を変更する//
+            ////////////////////////////////////////////////////////
             randomNumbers = Math.floor(Math.random() * Words.length);
             word = Words[randomNumbers].name;
             icon = Words[randomNumbers].icon;
             targetIcon.textContent = icon;
           }
-          updateTarget();
-          scoreLabel.textContent = score;
+          updateTypeTarget();
         }
       }
   });
