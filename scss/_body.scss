@@ -1,63 +1,108 @@
 @charset "utf-8";
 
-html {
-  font-size: 62.5%;
-  margin: 0;
-}
-
 body {
   box-sizing: border-box;
   background-image: url(../img/fruits.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: ’Courier New’, mono-space;
   color: #333;
+  font-family:mono-space;
   margin: 0 auto;
+  position:relative;
   text-align: center;
-}
-
-.backgroundShadow {
-  padding-top: 15rem;
-  background: rgba(30, 30, 30, 0.4);
-  height: 100vh;
-  width: 100%;
+  .backgroundShadow {
+    padding-top: 15rem;
+    background: rgba(30, 30, 30, 0.4);
+    height: 100vh;
+    width: 100%;
+  }
 }
 
 .targetBox {
   background: rgba(255, 255, 255, 0.9);
-  height: 45rem;
+  height: 60vh;
   max-width: 90rem;
   margin: 0 auto;
   padding: 2rem;
-  position: relative;
-  width:90%;
-}
-
-#target {
-  font-size: 6rem;
-  letter-spacing: 0.3rem;
-  margin: 4rem auto 5rem;
-  height: 8rem;
-}
-#target.caution {
-  font-size: 1.8rem;
-  line-height: 8rem;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width: 90%;
 }
 
 #targetIcon {
+  @include sp{
+    font-size: 3rem;
+  }
+  @include tab{
+    font-size: 4rem;
+  }
+  @include pc{
+    font-size: 5rem;
+  }
   animation-duration: 1s;
   animation-name: flashing;
   animation-iteration-count: infinite;
   display: inline-block;
-  font-size: 5rem;
   height: 6rem;
   line-height: 6rem;
   margin: 0 auto 4rem;
+  position: absolute;
+  top:20%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+  }
+  &.active {
+    animation-name: none;
+    color: #bbb;
+    line-height: 6rem;
+  }
 }
 
-#targetIcon:hover {
-  cursor: pointer;
+#target {
+  @include sp{
+    font-size: 2vw;
+  }
+  @include tab{
+    font-size: 5vw;
+  }
+  @include pc {
+  font-size: 3rem;
+  height: 8rem;
+  letter-spacing: 0.3rem;
+    margin: 4rem auto 5rem;
+  }
+  left:50%;
+  position:absolute;
+  top:35%;
+  transform:translate(-50%,-50%);
+  width: 100%;
+
+  .caution {
+    font-size: 1.8rem;
+    line-height: 8rem;
+  }
+  &.active {
+    @include sp {
+      font-size: 7vw;
+    }
+    @include tab {
+      font-size: 6rem;
+    }
+    @include pc {
+      font-size: 6rem;
+    }
+    color:#565656;
+    height: 8rem;
+    letter-spacing: 0.3rem;
+    margin: 4rem auto 5rem;
+  }
 }
+
 
 @keyframes flashing {
   0% {
@@ -71,26 +116,43 @@ body {
   }
 }
 
-#targetIcon.clicked {
-  line-height: 6rem;
-  color: #999;
-  font-size: 2.5rem;
-  animation-name: none;
-}
-
 .targetName {
   visibility: hidden;
 }
 
 .info {
-  font-size: 3rem;
+  @include sp {
+    font-size: 6vw;
+  }
+  @include tab {
+    font-size: 3rem;
+  }
+  @include pc {
+    font-size: 3rem;
+  }
+  left:50%;
+  position:absolute;
+  top:65%;
+  transform:translate(-50%,-50%);
+  width: 100%;
 }
+
 .timer {
-  font-size: 3rem;
-  padding-right: 3rem;
+  @include sp {
+    font-size: 5vw;
+    padding-right: 2rem;
+  }
+  @include tab {
+    font-size: 3rem;
+    padding-right: 3rem;
+  }
+  @include pc {
+    font-size: 3rem;
+    padding-right: 3rem;
+  }
   position: absolute;
-  top:90%;
-  transform:translate(0, -50%);
-  right:5%;
+  top: 90%;
   text-align: right;
+  transform: translate(0, -50%);
+  right: 5%;
 }
