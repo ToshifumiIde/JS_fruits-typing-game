@@ -15,6 +15,7 @@
   const counterLabel = document.getElementById("counter");
   const clearCounter = document.getElementById("clearCounter");
   const time = document.getElementById("time");
+  const message = document.getElementById("message");
 
   ////////////////////////////////////////////
   //タイピングゲームのタイプする文字列を格納//
@@ -108,10 +109,22 @@
       scoreLabel.textContent = score;
       clearTimeout(timeoutId);
       target.textContent = "✨Congratulations✨";
-      targetIcon.textContent = "✨🎉おめでとう🎉✨";
-      // typeSpeed.textContent = `${score / }`;
-      // const percent = score / (score+miss) *100;
-      // window.alert(`あなたの正解率は ${percent.toPrecision(3)}%(${score}/${score + miss}問正解) でした！`);
+      targetIcon.textContent = "おめでとうございます！！";
+      //typeSpeed.textContent = `${score / }`;
+      const percent = score / (score+miss) *100;
+      const scorePercent = percent.toPrecision(3);
+      let scoreMessage ="";
+      if(scorePercent === 100){
+      scoreMessage = `正解率${scorePercent}% 完璧！！！`
+      } else if(scorePercent >= 85){
+      scoreMessage = `正解率${scorePercent}% すごい！!`
+      } else if(scorePercent >= 75){
+      scoreMessage = `正解率${scorePercent}% やったね♪`
+      } else {
+      scoreMessage = `正解率${scorePercent}% まだまだいけます！`
+      };
+
+      message.textContent = scoreMessage;
       isPlaying = false;
   }
 

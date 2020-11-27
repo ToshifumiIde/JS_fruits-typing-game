@@ -307,7 +307,7 @@ body .backgroundShadow {
 }
 @media (min-width: 701px) and (max-width: 989px) {
   #target {
-    font-size: 5vw;
+    font-size: 4vw;
   }
 }
 @media (min-width: 990px) {
@@ -379,6 +379,29 @@ body .backgroundShadow {
 @media (min-width: 990px) {
   .info {
     font-size: 3rem;
+  }
+}
+
+#message {
+  left: 50%;
+  position: absolute;
+  top: 75%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+@media (max-width: 700px) {
+  #message {
+    font-size: 4vw;
+  }
+}
+@media (min-width: 701px) and (max-width: 989px) {
+  #message {
+    font-size: 2rem;
+  }
+}
+@media (min-width: 990px) {
+  #message {
+    font-size: 2rem;
   }
 }
 
